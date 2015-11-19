@@ -25,7 +25,7 @@ Implementar la clase CuatroEnLinea a partir de la siguiente especificación:
 * Mayra Aquino
 * Emmanuel Vazquez
 
-## Comision
+## Comisión
 
 * Lunes y Miercoles 18 - 22 hs.
 
