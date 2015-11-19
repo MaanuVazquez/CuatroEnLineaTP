@@ -20,7 +20,7 @@ Implementar la clase CuatroEnLinea a partir de la siguiente especificación:
 
 ![Tablero](./img/pantalla-tablero.png)
 
-## Integrantes:
+## Integrantes
 
 * Mayra Aquino
 * Emmanuel Vazquez
