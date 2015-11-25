@@ -272,6 +272,14 @@ public class Tablero {
 				this.casilleros[fila][columna].setFill(obtenerPintura(juego.obtenerCasillero(fila + 1, columna + 1)));
 
 			}
+
+			if (!juego.termino()) {
+				turnoDeJugador.setText(juego.obtenerTurno());
+			} else {
+				turnoDeJugador.setText("");
+				labelturnoDeJugador.setText("");
+			}
+
 		}
 	}
 
