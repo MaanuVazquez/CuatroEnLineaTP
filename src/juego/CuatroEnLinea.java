@@ -142,7 +142,9 @@ public class CuatroEnLinea {
 	 */
 	public void soltarFicha(int columna) {
 
-		verificarColumna(columna); // ToDo si hay error, cambiar a col-1
+		// Agregar si es necesario.
+		// columna -= 1;
+		verificarColumna(columna);
 
 		boolean casilleroAsignado = false;
 

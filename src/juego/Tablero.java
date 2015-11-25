@@ -18,6 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+//import javafx.scene.text.Font;
+//import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -42,6 +44,7 @@ public class Tablero {
 	private Label turnoDeJugador;
 	private Button botonLimpiar;
 	private boolean debugMode;
+	private Circle[][] casilleros;
 
 	/**
 	 * post: asocia el Tablero a 'nuevoJuego' y lo inicializa a partir de su
@@ -94,7 +97,9 @@ public class Tablero {
 		escenario.setResizable(false);
 		escenario.setTitle(Aplicacion.TITULO);
 
-		dibujar();
+		this.casilleros = new Circle[juego.contarFilas()][juego.contarColumnas()];
+
+		dibujarTablero();
 
 		escenario.show();
 	}
@@ -153,7 +158,7 @@ public class Tablero {
 	/**
 	 * post: actualiza el Tablero a partir del estado del juego asociado.
 	 */
-	public void dibujar() {
+	public void dibujarTablero() {
 
 		for (int fila = 1; fila <= juego.contarFilas(); fila++) {
 
@@ -163,7 +168,10 @@ public class Tablero {
 
 				Circle dibujoCasillero = dibujarCasillero(casillero);
 
-				grilla.add(dibujoCasillero, columna - 1, fila);
+				this.casilleros[fila - 1][columna - 1] = dibujoCasillero;
+
+				grilla.add(this.casilleros[fila - 1][columna - 1], columna - 1, fila);
+
 				if (debugMode) {
 
 					int columnaDelCirculo = columna - 1;
@@ -256,6 +264,17 @@ public class Tablero {
 
 	}
 
+	public void dibujar() {
+		for (int fila = 0; fila < this.casilleros.length; fila++) {
+
+			for (int columna = 0; columna < this.casilleros[fila].length; columna++) {
+
+				this.casilleros[fila][columna].setFill(obtenerPintura(juego.obtenerCasillero(fila + 1, columna + 1)));
+
+			}
+		}
+	}
+
 	/**
 	 * post: dibuja y devuelve el casillero dado.
 	 * 
@@ -285,11 +304,11 @@ public class Tablero {
 		switch (casillero) {
 
 		case AMARILLO:
-			pintura = Color.web("ffe600");
+			pintura = Color.web("ffe600"); // Amarillo
 			break;
 
 		case AZUL:
-			pintura = Color.web("0076ff");
+			pintura = Color.web("0076ff"); // Azul
 			break;
 
 		default:
@@ -341,5 +360,45 @@ public class Tablero {
 		}
 
 		alert.showAndWait();
+
+		// FORMA VIEJA
+		//
+		// Stage dialogo = new Stage();
+		// dialogo.setTitle(Aplicacion.TITULO);
+		// BorderPane panelGanador = new BorderPane();
+		// panelGanador.setPadding(new Insets(10.0));
+		// Label textoResultado;
+		// Font fuente = new Font(40.0);
+		// Button botonSalir = new Button("OK");
+		// if (juego.hayGanador()) {
+		//
+		// textoResultado = new Label("Gana el jugador "
+		// + juego.obtenerGanador());
+		//
+		// } else {
+		//
+		// textoResultado = new Label("Empataron");
+		// }
+		// textoResultado.setFont(fuente);
+		// textoResultado.setTextFill(Color.RED);
+		// panelGanador.setCenter(textoResultado);
+		// panelGanador.setRight(botonSalir);
+		// BorderPane.setAlignment(botonSalir, Pos.BOTTOM_RIGHT);
+		//
+		// botonSalir.setOnAction(new EventHandler<ActionEvent>() {
+		// @Override
+		// public void handle(ActionEvent event) {
+		// dialogo.close();
+		// }
+		// });
+		//
+		// Scene escenaGanador = new Scene(panelGanador);
+		//
+		// dialogo.setScene(escenaGanador);
+		// dialogo.initOwner(escenario);
+		// dialogo.initModality(Modality.WINDOW_MODAL);
+		// dialogo.setResizable(false);
+		//
+		// dialogo.showAndWait();
 	}
 }
