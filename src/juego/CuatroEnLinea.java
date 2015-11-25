@@ -21,9 +21,28 @@ package juego;
  * las casillas del tablero están ocupadas y ningún jugador cumple la condición
  * anterior para ganar. En este caso la partida finaliza en empate.
  * 
+ * Integrantes :
  * 
- *
+ * Mayra Aquino
+ * 
+ * Emmanuel Vazquez
+ * 
+ * Comisión:
+ * 
+ * Lunes y Miercoles 18 - 22 hs.
+ * 
+ * Profesores:
+ * 
+ * Facundo Rodriguez Arceri
+ * 
+ * Santiago Risaro
+ * 
+ * Mariano Tugnarelli
+ * 
+ * Lucas Ponce de León
+ * 
  */
+
 public class CuatroEnLinea {
 
 	private Casillero tablero[][];
@@ -47,19 +66,16 @@ public class CuatroEnLinea {
 	 * @param jugadorAmarillo
 	 *            : nombre del jugador con fichas amarillas.
 	 */
-	public CuatroEnLinea(int filas, int columnas, String jugadorAzul,
-			String jugadorAmarillo) {
+	public CuatroEnLinea(int filas, int columnas, String jugadorAzul, String jugadorAmarillo) {
 
 		/* Validamos que las filas/columnas son mayores o iguales a 4 */
 		if (filas < 4 || columnas < 4) {
-			throw new Error(
-					"Las filas o columnas deben ser mayores o iguales a 4");
+			throw new Error("Las filas o columnas deben ser mayores o iguales a 4");
 		}
 
 		/* Validamos que los nombres ingresados no sean solo espacios */
 		if (jugadorAmarillo.trim().isEmpty() || jugadorAzul.trim().isEmpty()) {
-			throw new Error(
-					"Los nombres de jugadores ingresados son incorrectos");
+			throw new Error("Los nombres de jugadores ingresados son incorrectos");
 		}
 
 		/* Llenamos el tablero de casilleros vacios */
@@ -126,14 +142,13 @@ public class CuatroEnLinea {
 	 */
 	public void soltarFicha(int columna) {
 
-		verificarColumna(columna);
+		verificarColumna(columna); // ToDo si hay error, cambiar a col-1
 
 		boolean casilleroAsignado = false;
 
 		if (!termino()) {
 
-			for (int fila = contarFilas() - 1; (fila >= 0)
-					&& (!casilleroAsignado); fila--) {
+			for (int fila = contarFilas() - 1; (fila >= 0) && (!casilleroAsignado); fila--) {
 
 				if (this.tablero[fila][columna] == Casillero.VACIO) {
 
@@ -151,9 +166,6 @@ public class CuatroEnLinea {
 					}
 				}
 			}
-		} else {
-
-			throw new Error("El juego terminó.");
 		}
 
 	}
@@ -173,11 +185,7 @@ public class CuatroEnLinea {
 					turnoJugadorAmarillo = true;
 				}
 			}
-		} else {
-			throw new Error(
-					"No se pueden soltar más fichas porque el juego terminó.");
 		}
-
 	}
 
 	/**
@@ -199,8 +207,7 @@ public class CuatroEnLinea {
 			}
 		}
 
-		return (casillerosOcupados == contarFilas() * contarColumnas())
-				|| hayGanador();
+		return (casillerosOcupados == contarFilas() * contarColumnas()) || hayGanador();
 	}
 
 	/**
@@ -208,8 +215,7 @@ public class CuatroEnLinea {
 	 */
 	public boolean hayGanador() {
 
-		return (chequeoVertical() || chequeoHorizontal()
-				|| chequeoDiagonalIzquierda() || chequeoDiagonalDerecha());
+		return (chequeoVertical() || chequeoHorizontal() || chequeoDiagonalIzquierda() || chequeoDiagonalDerecha());
 
 	}
 
@@ -291,8 +297,8 @@ public class CuatroEnLinea {
 					casillerosContinuosAmarillos = 0;
 					casillerosContinuosAzules = 0;
 				}
-				hayGanador = (casillerosContinuosAzules == 4)
-						|| (casillerosContinuosAmarillos == 4);
+
+				hayGanador = (casillerosContinuosAzules == 4) || (casillerosContinuosAmarillos == 4);
 				this.ganaAmarillo = (casillerosContinuosAmarillos == 4);
 			}
 		}
@@ -321,8 +327,7 @@ public class CuatroEnLinea {
 					casillerosContinuosAmarillos = 0;
 					casillerosContinuosAzules = 0;
 				}
-				hayGanador = (casillerosContinuosAzules == 4)
-						|| (casillerosContinuosAmarillos == 4);
+				hayGanador = (casillerosContinuosAzules == 4) || (casillerosContinuosAmarillos == 4);
 				ganaAmarillo = (casillerosContinuosAmarillos == 4);
 			}
 		}
@@ -337,12 +342,16 @@ public class CuatroEnLinea {
 			for (int columna = 0; columna < contarColumnas() - 3 && !hayGanador; columna++) {
 				hayGanador = ((this.tablero[fila][columna] == Casillero.AMARILLO
 						&& this.tablero[fila - 1][columna + 1] == Casillero.AMARILLO
-						&& this.tablero[fila - 2][columna + 2] == Casillero.AMARILLO && this.tablero[fila - 3][columna + 3] == Casillero.AMARILLO) || (this.tablero[fila][columna] == Casillero.AZUL
-						&& this.tablero[fila - 1][columna + 1] == Casillero.AZUL
-						&& this.tablero[fila - 2][columna + 2] == Casillero.AZUL && this.tablero[fila - 3][columna + 3] == Casillero.AZUL));
+						&& this.tablero[fila - 2][columna + 2] == Casillero.AMARILLO
+						&& this.tablero[fila - 3][columna + 3] == Casillero.AMARILLO)
+						|| (this.tablero[fila][columna] == Casillero.AZUL
+								&& this.tablero[fila - 1][columna + 1] == Casillero.AZUL
+								&& this.tablero[fila - 2][columna + 2] == Casillero.AZUL
+								&& this.tablero[fila - 3][columna + 3] == Casillero.AZUL));
 				ganaAmarillo = (this.tablero[fila][columna] == Casillero.AMARILLO
 						&& this.tablero[fila - 1][columna + 1] == Casillero.AMARILLO
-						&& this.tablero[fila - 2][columna + 2] == Casillero.AMARILLO && this.tablero[fila - 3][columna + 3] == Casillero.AMARILLO);
+						&& this.tablero[fila - 2][columna + 2] == Casillero.AMARILLO
+						&& this.tablero[fila - 3][columna + 3] == Casillero.AMARILLO);
 			}
 		}
 
@@ -356,12 +365,16 @@ public class CuatroEnLinea {
 			for (int columna = 3; columna < contarColumnas() && !hayGanador; columna++) {
 				hayGanador = ((this.tablero[fila][columna] == Casillero.AMARILLO
 						&& this.tablero[fila - 1][columna - 1] == Casillero.AMARILLO
-						&& this.tablero[fila - 2][columna - 2] == Casillero.AMARILLO && this.tablero[fila - 3][columna - 3] == Casillero.AMARILLO) || (this.tablero[fila][columna] == Casillero.AZUL
-						&& this.tablero[fila - 1][columna - 1] == Casillero.AZUL
-						&& this.tablero[fila - 2][columna - 2] == Casillero.AZUL && this.tablero[fila - 3][columna - 3] == Casillero.AZUL));
+						&& this.tablero[fila - 2][columna - 2] == Casillero.AMARILLO
+						&& this.tablero[fila - 3][columna - 3] == Casillero.AMARILLO)
+						|| (this.tablero[fila][columna] == Casillero.AZUL
+								&& this.tablero[fila - 1][columna - 1] == Casillero.AZUL
+								&& this.tablero[fila - 2][columna - 2] == Casillero.AZUL
+								&& this.tablero[fila - 3][columna - 3] == Casillero.AZUL));
 				ganaAmarillo = (this.tablero[fila][columna] == Casillero.AMARILLO
 						&& this.tablero[fila - 1][columna - 1] == Casillero.AMARILLO
-						&& this.tablero[fila - 2][columna - 2] == Casillero.AMARILLO && this.tablero[fila - 3][columna - 3] == Casillero.AMARILLO);
+						&& this.tablero[fila - 2][columna - 2] == Casillero.AMARILLO
+						&& this.tablero[fila - 3][columna - 3] == Casillero.AMARILLO);
 			}
 		}
 		return hayGanador;

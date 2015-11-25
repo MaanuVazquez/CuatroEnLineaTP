@@ -21,8 +21,7 @@ public class LimpiarTablero implements EventHandler<ActionEvent> {
 	 * @param tableroCuatroEnLinea
 	 * @param cuatroEnLinea
 	 */
-	public LimpiarTablero(Tablero tableroCuatroEnLinea,
-			CuatroEnLinea cuatroEnLinea) {
+	public LimpiarTablero(Tablero tableroCuatroEnLinea, CuatroEnLinea cuatroEnLinea) {
 
 		tablero = tableroCuatroEnLinea;
 		juego = cuatroEnLinea;
@@ -32,6 +31,11 @@ public class LimpiarTablero implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent evento) {
 
 		juego.limpiarTablero();
+
+		if (!tablero.debugModeHabilitado()) {
+
+			tablero.botonLimpiarDeshabilitar(true);
+		}
 
 		tablero.dibujar();
 

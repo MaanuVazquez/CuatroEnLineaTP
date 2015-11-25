@@ -6,6 +6,9 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -15,8 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -28,8 +29,8 @@ public class Tablero {
 	private static final int ALTO_FILA = 80;
 	private static final int ANCHO_COLUMNA = 80;
 	private static final int ALTURA_BOTON = 20;
-	private static final double RADIO = Math.min(ALTO_FILA - 1,
-			ANCHO_COLUMNA - 1) / 2;
+	private static final double RADIO = Math.min(ALTO_FILA - 1, ANCHO_COLUMNA - 1) / 2;
+	public final Image ICONO = new Image(getClass().getResourceAsStream("icon.png"));
 
 	private HBox turno;
 	private HBox botones;
@@ -39,7 +40,8 @@ public class Tablero {
 	private Stage escenario;
 	private Label labelturnoDeJugador;
 	private Label turnoDeJugador;
-	private boolean adiciones = true;
+	private Button botonLimpiar;
+	private boolean debugMode;
 
 	/**
 	 * post: asocia el Tablero a 'nuevoJuego' y lo inicializa a partir de su
@@ -47,30 +49,26 @@ public class Tablero {
 	 * 
 	 * @param nuevoJuego
 	 */
-	public Tablero(CuatroEnLinea nuevoJuego) {
+	public Tablero(CuatroEnLinea nuevoJuego, boolean debugMode) {
 
 		juego = nuevoJuego;
 		escenario = new Stage();
+		escenario.getIcons().add(ICONO);
 
 		borde = new BorderPane();
 		grilla = new GridPane();
 
-		if (adiciones) {
+		this.debugMode = debugMode;
 
-			botones = new HBox();
-			turno = new HBox();
-		}
-		if (adiciones) {
-			turnoDeJugador = new Label();
-			labelturnoDeJugador = new Label();
-			turno.setAlignment(Pos.BOTTOM_LEFT);
-			turno.setPadding(new Insets(0, 0, 10, 10));
-			turno.setSpacing(5);
-			turno.getChildren().add(labelturnoDeJugador);
-			turno.getChildren().add(turnoDeJugador);
-
-		}
-
+		botones = new HBox();
+		turno = new HBox();
+		turnoDeJugador = new Label();
+		labelturnoDeJugador = new Label();
+		turno.setAlignment(Pos.BOTTOM_LEFT);
+		turno.setPadding(new Insets(0, 0, 10, 10));
+		turno.setSpacing(5);
+		turno.getChildren().add(labelturnoDeJugador);
+		turno.getChildren().add(turnoDeJugador);
 		borde.setLeft(grilla);
 		borde.setRight(botones);
 		borde.setBottom(turno);
@@ -84,13 +82,10 @@ public class Tablero {
 
 		dibujarBotones();
 
-		double ancho = juego.contarColumnas() * ANCHO_COLUMNA;
-		double alto = (juego.contarFilas() * ALTO_FILA) + ALTURA_BOTON;
+		int excedente = 150;
 
-		if (adiciones) {
-			ancho += 150;
-			alto += 50;
-		}
+		double ancho = juego.contarColumnas() * ANCHO_COLUMNA + excedente;
+		double alto = (juego.contarFilas() * ALTO_FILA) + ALTURA_BOTON + 50;
 
 		Scene escena = new Scene(borde, ancho, alto);
 		grilla.setPadding(new Insets(10, 10, 10, 10));
@@ -122,32 +117,36 @@ public class Tablero {
 
 		}
 
-		if (adiciones) {
+		/* Establecemos la barra horizontal de botones */
+
+		botones.setSpacing(5);
+		botones.setAlignment(Pos.BOTTOM_RIGHT);
+		botones.setPadding(new Insets(0, 10, 0, 0));
+
+		/* Creamos el botón para limpiar el tablero */
+		botonLimpiar = new Button("Reiniciar");
+		botonLimpiar.setOnAction(new LimpiarTablero(this, juego));
+		botonLimpiar.setAlignment(Pos.BOTTOM_RIGHT);
+		botonLimpiar.setDisable(true);
+
+		botones.getChildren().add(botonLimpiar);
+		if (this.debugMode) {
 
 			/* Creamos el botón para limpiar el tablero */
-			Button botonLimpiar = new Button("Limpiar");
-			botonLimpiar.setOnAction(new LimpiarTablero(this, juego));
-			botonLimpiar.setAlignment(Pos.BOTTOM_RIGHT);
-
-			/* Creamos el botón para cerrar el juego */
-			Button botonSalir = new Button("Salir");
-			botonSalir.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent evento) {
-					escenario.close();
-				}
-			});
-
-			/* Establecemos la barra horizontal de botones */
-			botones.setSpacing(5);
-
-			botones.setAlignment(Pos.BOTTOM_RIGHT);
-			botones.setPadding(new Insets(0, 10, 0, 0));
-
-			botones.getChildren().add(botonLimpiar);
-			botones.getChildren().add(botonSalir);
-
+			botonLimpiar.setText("Limpiar");
+			botonLimpiar.setDisable(false);
 		}
+
+		/* Creamos el botón para cerrar el juego */
+		Button botonSalir = new Button("Salir");
+		botonSalir.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent evento) {
+				escenario.close();
+			}
+		});
+
+		botones.getChildren().add(botonSalir);
 
 	}
 
@@ -163,13 +162,13 @@ public class Tablero {
 				Casillero casillero = juego.obtenerCasillero(fila, columna);
 
 				Circle dibujoCasillero = dibujarCasillero(casillero);
+
 				grilla.add(dibujoCasillero, columna - 1, fila);
-				if (adiciones) {
+				if (debugMode) {
 
 					int columnaDelCirculo = columna - 1;
 					int filaDelCirculo = fila - 1;
-					Label labelCasillero = new Label(filaDelCirculo + ""
-							+ columnaDelCirculo);
+					Label labelCasillero = new Label(filaDelCirculo + "" + columnaDelCirculo);
 					grilla.add(labelCasillero, columna - 1, fila);
 					GridPane.setHalignment(labelCasillero, HPos.CENTER);
 					labelCasillero.setVisible(false);
@@ -178,89 +177,81 @@ public class Tablero {
 					 * Evento para que al clickear se asigne al casillero
 					 * clickeado la ficha del jugador en turno
 					 */
-					dibujoCasillero.addEventHandler(MouseEvent.MOUSE_CLICKED,
-							new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									juego.soltarFicha(filaDelCirculo,
-											columnaDelCirculo);
+					dibujoCasillero.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							juego.soltarFicha(filaDelCirculo, columnaDelCirculo);
 
-									dibujar();
+							dibujar();
 
-									if (juego.termino()) {
+							if (juego.termino()) {
 
-										mostrarResultado();
-									}
-								}
-							});
+								mostrarResultado();
+							}
+						}
+					});
 
 					/*
 					 * Evento para que al poner el mouse sobre un casillero se
 					 * muestre su número de casillero
 					 */
-					dibujoCasillero.addEventHandler(MouseEvent.MOUSE_ENTERED,
-							new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									labelCasillero.setVisible(true);
-								}
-							});
+					dibujoCasillero.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							labelCasillero.setVisible(true);
+						}
+					});
 
 					/*
 					 * Evento para que al retirar el mouse del casillero deje de
 					 * mostrar su número
 					 */
-					dibujoCasillero.addEventHandler(MouseEvent.MOUSE_EXITED,
-							new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									labelCasillero.setVisible(false);
-								}
-							});
+					dibujoCasillero.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							labelCasillero.setVisible(false);
+						}
+					});
 
-					labelCasillero.addEventHandler(MouseEvent.MOUSE_ENTERED,
-							new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									labelCasillero.setVisible(true);
-								}
-							});
+					labelCasillero.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							labelCasillero.setVisible(true);
+						}
+					});
 
-					labelCasillero.addEventHandler(MouseEvent.MOUSE_CLICKED,
-							new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									juego.soltarFicha(filaDelCirculo,
-											columnaDelCirculo);
+					labelCasillero.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							juego.soltarFicha(filaDelCirculo, columnaDelCirculo);
 
-									dibujar();
+							dibujar();
 
-									if (juego.termino()) {
+							if (juego.termino()) {
 
-										mostrarResultado();
-									}
-								}
-							});
+								mostrarResultado();
+							}
+						}
+					});
 
-					labelCasillero.addEventHandler(MouseEvent.MOUSE_EXITED,
-							new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									labelCasillero.setVisible(false);
-								}
-							});
+					labelCasillero.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							labelCasillero.setVisible(false);
+						}
+					});
 
-					labelturnoDeJugador.setText("Turno del jugador:");
+				}
 
-					if (!juego.termino()) {
-						turnoDeJugador.setText(juego.obtenerTurno());
-					} else {
-						turnoDeJugador.setText("");
-						labelturnoDeJugador.setText("");
-					}
+				labelturnoDeJugador.setText("Turno del jugador:");
+
+				if (!juego.termino()) {
+					turnoDeJugador.setText(juego.obtenerTurno());
+				} else {
+					turnoDeJugador.setText("");
+					labelturnoDeJugador.setText("");
 				}
 			}
-
 		}
 
 	}
@@ -269,7 +260,7 @@ public class Tablero {
 	 * post: dibuja y devuelve el casillero dado.
 	 * 
 	 * @param casillero
-	 * @return representaciÃ³n grÃ¡fica del Casillero.
+	 * @return representación gráfica del Casillero.
 	 */
 	private Circle dibujarCasillero(Casillero casillero) {
 
@@ -294,11 +285,11 @@ public class Tablero {
 		switch (casillero) {
 
 		case AMARILLO:
-			pintura = Color.YELLOW;
+			pintura = Color.web("ffe600");
 			break;
 
 		case AZUL:
-			pintura = Color.BLUE;
+			pintura = Color.web("0076ff");
 			break;
 
 		default:
@@ -308,48 +299,47 @@ public class Tablero {
 		return pintura;
 	}
 
+	/*
+	 * Post: deshabilita el botonLimpiar
+	 */
+
+	public void botonLimpiarDeshabilitar(boolean deshabilitado) {
+		this.botonLimpiar.setDisable(deshabilitado);
+	}
+
+	/*
+	 * Post: Devuelve si el modo debug está habilitado.
+	 */
+
+	public boolean debugModeHabilitado() {
+		return this.debugMode;
+	}
+
 	/**
 	 * pre : el juego asociado termina. post: muestra un mensaje indicando el
 	 * resultado del juego.
 	 */
 	public void mostrarResultado() {
+		if (!debugMode) {
 
-		Stage dialogo = new Stage();
-		dialogo.setTitle(Aplicacion.TITULO);
-		BorderPane panelGanador = new BorderPane();
-		panelGanador.setPadding(new Insets(10.0));
-		Label textoResultado;
-		Font fuente = new Font(40.0);
-		Button botonSalir = new Button("OK");
+			botonLimpiarDeshabilitar(false);
+		}
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(Aplicacion.TITULO);
+
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(ICONO);
+
 		if (juego.hayGanador()) {
-
-			textoResultado = new Label("Gana el jugador "
-					+ juego.obtenerGanador());
+			alert.setHeaderText("FINAL DEL JUEGO");
+			alert.setContentText(("El ganador es: " + juego.obtenerGanador()).toUpperCase());
 
 		} else {
-
-			textoResultado = new Label("Empataron");
+			alert.setHeaderText("FINAL DEL JUEGO");
+			alert.setContentText("Hubo Empate".toUpperCase());
 		}
-		textoResultado.setFont(fuente);
-		textoResultado.setTextFill(Color.RED);
-		panelGanador.setCenter(textoResultado);
-		panelGanador.setRight(botonSalir);
-		BorderPane.setAlignment(botonSalir, Pos.BOTTOM_RIGHT);
 
-		botonSalir.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				dialogo.close();
-			}
-		});
-
-		Scene escenaGanador = new Scene(panelGanador);
-
-		dialogo.setScene(escenaGanador);
-		dialogo.initOwner(escenario);
-		dialogo.initModality(Modality.WINDOW_MODAL);
-		dialogo.setResizable(false);
-
-		dialogo.showAndWait();
+		alert.showAndWait();
 	}
 }

@@ -5,8 +5,10 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -21,6 +23,7 @@ import javafx.stage.Stage;
 public class Aplicacion extends Application {
 
 	public static final String TITULO = "Cuatro en Línea";
+	public final Image ICONO = new Image(getClass().getResourceAsStream("icon.png"));
 	private GridPane grilla;
 
 	private TextField campoNombreJugadorRojo;
@@ -30,6 +33,8 @@ public class Aplicacion extends Application {
 	private TextField campoFilas;
 
 	private Button botonIniciar;
+
+	private CheckBox checkDebug;
 
 	Stage escenarioPrincipal;
 
@@ -41,6 +46,7 @@ public class Aplicacion extends Application {
 		Scene escena = new Scene(grilla, 400, 300);
 		escenarioPrincipal.setScene(escena);
 		escenarioPrincipal.setTitle(TITULO);
+		escenarioPrincipal.getIcons().add(ICONO);
 		escenarioPrincipal.show();
 		this.escenarioPrincipal = escenarioPrincipal;
 	}
@@ -67,6 +73,7 @@ public class Aplicacion extends Application {
 		grilla.add(new Label("Columnas"), 0, 4);
 		grilla.add(campoColumnas, 1, 4);
 		grilla.add(botonIniciar, 0, 5, 2, 1);
+		grilla.add(checkDebug, 2, 5, 1, 1);
 
 		GridPane.setHalignment(botonIniciar, HPos.CENTER);
 		GridPane.setHalignment(textoTitulo, HPos.CENTER);
@@ -82,6 +89,8 @@ public class Aplicacion extends Application {
 
 		botonIniciar = new Button("Empezar");
 		botonIniciar.setOnAction(new IniciarJuego(this));
+
+		checkDebug = new CheckBox("Debug Mode");
 	}
 
 	/**
@@ -96,10 +105,9 @@ public class Aplicacion extends Application {
 		int filas = Integer.parseInt(campoFilas.getText());
 		int columnas = Integer.parseInt(campoColumnas.getText());
 
-		CuatroEnLinea juego = new CuatroEnLinea(filas, columnas,
-				nombreJugadorRojo, nombreJugadorAmarillo);
+		CuatroEnLinea juego = new CuatroEnLinea(filas, columnas, nombreJugadorRojo, nombreJugadorAmarillo);
 
-		Tablero tablero = new Tablero(juego);
+		Tablero tablero = new Tablero(juego, checkDebug.isSelected());
 		tablero.mostrar();
 		this.escenarioPrincipal.close();
 	}
