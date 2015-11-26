@@ -174,7 +174,7 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(5, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);
+		this.juego.soltarFicha(1);
 		Casillero casilla = this.juego.obtenerCasillero(5, 1);
 
 		/* comprobación */
@@ -187,7 +187,7 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(5, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(1);
+		this.juego.soltarFicha(2);
 		Casillero casilla = this.juego.obtenerCasillero(5, 2);
 
 		/* comprobación */
@@ -200,7 +200,7 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(5, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(2);
+		this.juego.soltarFicha(3);
 		Casillero casilla = this.juego.obtenerCasillero(5, 3);
 
 		/* comprobación */
@@ -213,7 +213,7 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(5, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(3);
+		this.juego.soltarFicha(4);
 		Casillero casilla = this.juego.obtenerCasillero(5, 4);
 
 		/* comprobación */
@@ -246,25 +246,25 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
-
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(2);// Jugador uno
-		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador dos
 
 		this.juego.soltarFicha(1);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
+		this.juego.soltarFicha(2);// Jugador dos
 		this.juego.soltarFicha(3);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador dos
 
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
+		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(1);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
+		this.juego.soltarFicha(3);// Jugador dos
+
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
 		boolean termino = this.juego.termino();
 
 		/* comprobación */
@@ -277,22 +277,22 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
-
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+
+		this.juego.soltarFicha(1);// Jugador uno
+		this.juego.soltarFicha(2);// Jugador dos
+		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+
+		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(1);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
 
 		this.juego.soltarFicha(1);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
-		this.juego.soltarFicha(3);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
-
-		this.juego.soltarFicha(0);// Jugador uno
 
 		boolean termino = this.juego.termino();
 
@@ -307,25 +307,25 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
-
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+
+		this.juego.soltarFicha(1);// Jugador uno
+		this.juego.soltarFicha(2);// Jugador dos
+		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+
+		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(1);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
 
 		this.juego.soltarFicha(1);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
-		this.juego.soltarFicha(3);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
-
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
-		this.juego.soltarFicha(1);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos, tiene otra posibilidad para
+		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(1);// Jugador dos, tiene otra posibilidad para
 									// tirar
 
 		boolean termino = this.juego.termino();
@@ -410,24 +410,24 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
-
 		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(2);// Jugador dos
+
+		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
-		this.juego.soltarFicha(3);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
 
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
-
 		this.juego.soltarFicha(2);// Jugador uno
 		this.juego.soltarFicha(2);// Jugador dos
+
 		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 
 		boolean gano = this.juego.hayGanador();
 
@@ -441,18 +441,18 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
-
 		this.juego.soltarFicha(2);// Jugador uno
 		this.juego.soltarFicha(2);// Jugador dos
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(3);// Jugador dos
 
-		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(1);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+
+		this.juego.soltarFicha(2);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 
 		boolean gano = this.juego.hayGanador();
 
@@ -466,14 +466,14 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
-
 		this.juego.soltarFicha(2);// Jugador uno
 		this.juego.soltarFicha(2);// Jugador dos
+
 		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 		boolean gano = this.juego.termino();
 
 		/* comprobación */
@@ -486,20 +486,20 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0); // Jugador uno
-		this.juego.soltarFicha(0); // Jugador dos
-		this.juego.soltarFicha(0); // Jugador uno
-		this.juego.soltarFicha(0); // Jugador dos
-
-		this.juego.soltarFicha(2); // Jugador uno
+		this.juego.soltarFicha(1); // Jugador uno
 		this.juego.soltarFicha(1); // Jugador dos
 		this.juego.soltarFicha(1); // Jugador uno
 		this.juego.soltarFicha(1); // Jugador dos
 
-		this.juego.soltarFicha(1); // Jugador uno
+		this.juego.soltarFicha(3); // Jugador uno
 		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
+		this.juego.soltarFicha(2); // Jugador dos
+
+		this.juego.soltarFicha(2); // Jugador uno
 		this.juego.soltarFicha(3); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
 
 		boolean gano = this.juego.termino();
 
@@ -514,20 +514,20 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(3); // Jugador uno
-		this.juego.soltarFicha(3); // Jugador dos
-		this.juego.soltarFicha(3); // Jugador uno
-		this.juego.soltarFicha(3); // Jugador dos
+		this.juego.soltarFicha(4); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
+		this.juego.soltarFicha(4); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
 
-		this.juego.soltarFicha(1); // Jugador uno
-		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
-		this.juego.soltarFicha(2); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(3); // Jugador dos
 
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
 		this.juego.soltarFicha(1); // Jugador dos
-		this.juego.soltarFicha(1); // Jugador uno
-		this.juego.soltarFicha(0); // Jugador dos
 
 		boolean gano = this.juego.termino();
 
@@ -545,21 +545,21 @@ public class pruebaCuatroEnLinea {
 
 		/* operaciones */
 
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(2);// Jugador uno
+		this.juego.soltarFicha(2);// Jugador dos
+		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 		this.juego.soltarFicha(3);// Jugador dos
-		this.juego.soltarFicha(3);// Jugador uno
-		this.juego.soltarFicha(2);// Jugador dos
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(2);// Jugador uno
 		this.juego.soltarFicha(2);// Jugador dos
 		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 
 		boolean gano = this.juego.hayGanador();
 
@@ -577,16 +577,16 @@ public class pruebaCuatroEnLinea {
 
 		/* operaciones */
 
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(2);// Jugador uno
 		this.juego.soltarFicha(2);// Jugador dos
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(3);// Jugador dos
-		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(1);// Jugador uno
+		this.juego.soltarFicha(4);// Jugador dos
+		this.juego.soltarFicha(2);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 
 		boolean gano = this.juego.hayGanador();
 
@@ -601,17 +601,17 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(6, 6, "Manu", "Carlos");
 		/* operacion */
 
-		this.juego.soltarFicha(2); // Jugador uno
-		this.juego.soltarFicha(3); // Jugador dos
-		this.juego.soltarFicha(2); // Jugador uno
-		this.juego.soltarFicha(1); // Jugador dos
 		this.juego.soltarFicha(3); // Jugador uno
-		this.juego.soltarFicha(1); // Jugador dos
-		this.juego.soltarFicha(0); // Jugador uno
 		this.juego.soltarFicha(4); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(4); // Jugador uno
+		this.juego.soltarFicha(2); // Jugador dos
+		this.juego.soltarFicha(1); // Jugador uno
 		this.juego.soltarFicha(5); // Jugador dos
 		this.juego.soltarFicha(5); // Jugador uno
+		this.juego.soltarFicha(6); // Jugador dos
+		this.juego.soltarFicha(6); // Jugador uno
 
 		boolean gano = this.juego.hayGanador();
 
@@ -662,13 +662,13 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(12, 7, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0);// Jugador uno
-		this.juego.soltarFicha(0);// Jugador dos
 		this.juego.soltarFicha(1);// Jugador uno
 		this.juego.soltarFicha(1);// Jugador dos
 		this.juego.soltarFicha(2);// Jugador uno
 		this.juego.soltarFicha(2);// Jugador dos
 		this.juego.soltarFicha(3);// Jugador uno
+		this.juego.soltarFicha(3);// Jugador dos
+		this.juego.soltarFicha(4);// Jugador uno
 		boolean gano = this.juego.termino();
 
 		/* comprobación */
@@ -682,13 +682,13 @@ public class pruebaCuatroEnLinea {
 
 		/* operaciones */
 
-		this.juego.soltarFicha(0); // Jugador uno
-		this.juego.soltarFicha(1); // Jugador dos
-		this.juego.soltarFicha(0); // Jugador uno
+		this.juego.soltarFicha(1); // Jugador uno
 		this.juego.soltarFicha(2); // Jugador dos
-		this.juego.soltarFicha(0); // Jugador uno
+		this.juego.soltarFicha(1); // Jugador uno
 		this.juego.soltarFicha(3); // Jugador dos
-		this.juego.soltarFicha(0); // Jugador uno
+		this.juego.soltarFicha(1); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
+		this.juego.soltarFicha(1); // Jugador uno
 
 		boolean gano = this.juego.hayGanador();
 
@@ -803,18 +803,18 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(4, 4, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0); // Jugador uno
-		this.juego.soltarFicha(0); // Jugador dos
-		this.juego.soltarFicha(0); // Jugador uno
-		this.juego.soltarFicha(0); // Jugador dos
+		this.juego.soltarFicha(1); // Jugador uno
+		this.juego.soltarFicha(1); // Jugador dos
+		this.juego.soltarFicha(1); // Jugador uno
+		this.juego.soltarFicha(1); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
-		this.juego.soltarFicha(1); // Jugador dos
-		this.juego.soltarFicha(1); // Jugador uno
-		this.juego.soltarFicha(1); // Jugador dos
-		this.juego.soltarFicha(1); // Jugador uno
 		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
 		this.juego.soltarFicha(3); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
 
 		boolean gano = this.juego.termino();
 
@@ -829,19 +829,19 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(6, 6, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(0); // Jugador uno
-		this.juego.soltarFicha(1); // Jugador dos
 		this.juego.soltarFicha(1); // Jugador uno
 		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
-		this.juego.soltarFicha(0); // Jugador dos
-		this.juego.soltarFicha(2); // Jugador uno
 		this.juego.soltarFicha(3); // Jugador dos
-		this.juego.soltarFicha(4); // Jugador uno
-		this.juego.soltarFicha(3); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(1); // Jugador dos
 		this.juego.soltarFicha(3); // Jugador uno
 		this.juego.soltarFicha(4); // Jugador dos
-		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(5); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
+		this.juego.soltarFicha(4); // Jugador uno
+		this.juego.soltarFicha(5); // Jugador dos
+		this.juego.soltarFicha(4); // Jugador uno
 
 		boolean gano = this.juego.hayGanador();
 		/* comprobacion */
@@ -855,18 +855,18 @@ public class pruebaCuatroEnLinea {
 		this.juego = new CuatroEnLinea(7, 6, "Manu", "Carlos");
 
 		/* operaciones */
-		this.juego.soltarFicha(3); // Jugador uno
-		this.juego.soltarFicha(3); // Jugador dos
-		this.juego.soltarFicha(3); // Jugador uno
-		this.juego.soltarFicha(3); // Jugador dos
-		this.juego.soltarFicha(1); // Jugador uno
-		this.juego.soltarFicha(2); // Jugador dos
+		this.juego.soltarFicha(4); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
+		this.juego.soltarFicha(4); // Jugador uno
+		this.juego.soltarFicha(4); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
+		this.juego.soltarFicha(3); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
+		this.juego.soltarFicha(3); // Jugador dos
+		this.juego.soltarFicha(3); // Jugador uno
 		this.juego.soltarFicha(2); // Jugador dos
 		this.juego.soltarFicha(2); // Jugador uno
 		this.juego.soltarFicha(1); // Jugador dos
-		this.juego.soltarFicha(1); // Jugador uno
-		this.juego.soltarFicha(0); // Jugador dos
 
 		boolean gano = this.juego.termino();
 
