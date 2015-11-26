@@ -32,7 +32,7 @@ public class SoltarFicha implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent evento) {
 
-		juego.soltarFicha(columna); // Agregar +1 si es necesario.
+		juego.soltarFicha(columna + 1);
 
 		tablero.dibujar();
 

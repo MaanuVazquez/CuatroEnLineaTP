@@ -1,7 +1,10 @@
 package juego;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,9 +12,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -100,16 +106,58 @@ public class Aplicacion extends Application {
 	 */
 	public void iniciar() {
 
-		String nombreJugadorRojo = campoNombreJugadorRojo.getText();
+		String nombreJugadorAzul = campoNombreJugadorRojo.getText();
 		String nombreJugadorAmarillo = campoNombreJugadorAmarillo.getText();
-		int filas = Integer.parseInt(campoFilas.getText());
-		int columnas = Integer.parseInt(campoColumnas.getText());
 
-		CuatroEnLinea juego = new CuatroEnLinea(filas, columnas, nombreJugadorRojo, nombreJugadorAmarillo);
+		if (nombreJugadorAzul.trim().isEmpty() || nombreJugadorAmarillo.trim().isEmpty()) {
+			dialogoError("El nombre de los jugadores no debe ser vacio");
+		} else {
+			int filas = Integer.parseInt(campoFilas.getText());
+			int columnas = Integer.parseInt(campoColumnas.getText());
+			if (filas < 4 || columnas < 4) {
+				dialogoError("Las columnas y filas deben ser iguales o mayores a 4");
+			} else {
+				CuatroEnLinea juego = new CuatroEnLinea(filas, columnas, nombreJugadorAzul, nombreJugadorAmarillo);
+				Tablero tablero = new Tablero(juego, checkDebug.isSelected());
+				tablero.mostrar();
+				this.escenarioPrincipal.close();
+			}
+		}
 
-		Tablero tablero = new Tablero(juego, checkDebug.isSelected());
-		tablero.mostrar();
-		this.escenarioPrincipal.close();
+	}
+
+	public void dialogoError(String mensaje) {
+		Stage dialogo = new Stage();
+		dialogo.setTitle(TITULO);
+		dialogo.getIcons().add(ICONO);
+		BorderPane panelError = new BorderPane();
+		panelError.setPadding(new Insets(10.0));
+		Label textoError;
+		Font fuente = new Font(15.0);
+		Button botonSalir = new Button("Aceptar");
+		textoError = new Label(mensaje);
+		textoError.setFont(fuente);
+		textoError.setTextFill(Color.BLACK);
+		panelError.setCenter(textoError);
+		panelError.setRight(botonSalir);
+		BorderPane.setAlignment(botonSalir, Pos.BOTTOM_RIGHT);
+		BorderPane.setMargin(botonSalir, new Insets(0, 0, 0, 10));
+
+		botonSalir.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				dialogo.close();
+			}
+		});
+
+		Scene escenaGanador = new Scene(panelError);
+
+		dialogo.setScene(escenaGanador);
+		dialogo.initOwner(escenarioPrincipal);
+		dialogo.initModality(Modality.WINDOW_MODAL);
+		dialogo.setResizable(false);
+
+		dialogo.showAndWait();
 	}
 
 	public static void main(String[] args) {

@@ -37,7 +37,7 @@ public class LimpiarTablero implements EventHandler<ActionEvent> {
 			tablero.botonLimpiarDeshabilitar(true);
 		}
 
-		tablero.dibujarTablero();
+		tablero.dibujar();
 
 	}
 }

@@ -6,8 +6,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,8 +16,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-//import javafx.scene.text.Font;
-//import javafx.stage.Modality;
+import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -352,61 +350,43 @@ public class Tablero {
 			botonLimpiarDeshabilitar(false);
 		}
 
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(Aplicacion.TITULO);
-
-		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(ICONO);
-
+		Stage dialogo = new Stage();
+		dialogo.setTitle(Aplicacion.TITULO);
+		dialogo.getIcons().add(ICONO);
+		BorderPane panelGanador = new BorderPane();
+		panelGanador.setPadding(new Insets(10.0));
+		Label textoResultado;
+		Font fuente = new Font(40.0);
+		Button botonSalir = new Button("Aceptar");
 		if (juego.hayGanador()) {
-			alert.setHeaderText("FINAL DEL JUEGO");
-			alert.setContentText(("El ganador es: " + juego.obtenerGanador()).toUpperCase());
+
+			textoResultado = new Label(("Gana el jugador " + juego.obtenerGanador()).toUpperCase());
 
 		} else {
-			alert.setHeaderText("FINAL DEL JUEGO");
-			alert.setContentText("Hubo Empate".toUpperCase());
+
+			textoResultado = new Label("Empataron".toUpperCase());
 		}
+		textoResultado.setFont(fuente);
+		textoResultado.setTextFill(Color.YELLOWGREEN);
+		panelGanador.setCenter(textoResultado);
+		panelGanador.setRight(botonSalir);
+		BorderPane.setAlignment(botonSalir, Pos.BOTTOM_RIGHT);
+		BorderPane.setMargin(botonSalir, new Insets(0, 0, 0, 10));
 
-		alert.showAndWait();
+		botonSalir.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				dialogo.close();
+			}
+		});
 
-		// FORMA VIEJA
-		//
-		// Stage dialogo = new Stage();
-		// dialogo.setTitle(Aplicacion.TITULO);
-		// BorderPane panelGanador = new BorderPane();
-		// panelGanador.setPadding(new Insets(10.0));
-		// Label textoResultado;
-		// Font fuente = new Font(40.0);
-		// Button botonSalir = new Button("OK");
-		// if (juego.hayGanador()) {
-		//
-		// textoResultado = new Label("Gana el jugador "
-		// + juego.obtenerGanador());
-		//
-		// } else {
-		//
-		// textoResultado = new Label("Empataron");
-		// }
-		// textoResultado.setFont(fuente);
-		// textoResultado.setTextFill(Color.RED);
-		// panelGanador.setCenter(textoResultado);
-		// panelGanador.setRight(botonSalir);
-		// BorderPane.setAlignment(botonSalir, Pos.BOTTOM_RIGHT);
-		//
-		// botonSalir.setOnAction(new EventHandler<ActionEvent>() {
-		// @Override
-		// public void handle(ActionEvent event) {
-		// dialogo.close();
-		// }
-		// });
-		//
-		// Scene escenaGanador = new Scene(panelGanador);
-		//
-		// dialogo.setScene(escenaGanador);
-		// dialogo.initOwner(escenario);
-		// dialogo.initModality(Modality.WINDOW_MODAL);
-		// dialogo.setResizable(false);
-		//
-		// dialogo.showAndWait();
+		Scene escenaGanador = new Scene(panelGanador);
+
+		dialogo.setScene(escenaGanador);
+		dialogo.initOwner(escenario);
+		dialogo.initModality(Modality.WINDOW_MODAL);
+		dialogo.setResizable(false);
+
+		dialogo.showAndWait();
 	}
 }
